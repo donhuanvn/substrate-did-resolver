@@ -1,8 +1,8 @@
 {
   "name": "@donhuanvn96/substrate-did-resolver",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "DID resolver for Substrate Addresses with support for key management",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -16,5 +16,10 @@
   "bugs": {
     "url": "https://github.com/donhuanvn/substrate-did-resolver/issues"
   },
-  "homepage": "https://github.com/donhuanvn/substrate-did-resolver#readme"
+  "homepage": "https://github.com/donhuanvn/substrate-did-resolver#readme",
+  "dependencies": {
+    "@polkadot/api": "^9.4.2",
+    "@polkadot/keyring": "^10.1.9",
+    "@polkadot/util": "^10.1.9"
+  }
 }
