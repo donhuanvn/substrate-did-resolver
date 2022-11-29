@@ -40,6 +40,10 @@ const VerificationMethodTypes = {
   X25519KeyAgreementKey2019: {
     '@context': 'https://w3id.org/security/suites/x25519-2019/v1',
     'name': 'X25519KeyAgreementKey2019'
+  },
+  RSAVerificationKey: {
+    '@context': 'https://w3id.org/security/suites/rsa/v1*',
+    'name': 'RSAVerificationKey*'
   }
 }
 

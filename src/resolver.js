@@ -18,6 +18,12 @@ class SubstrateDidResolver {
     this.#api = await ApiPromise.create({ provider: this.#provider })
   }
 
+  async #deinit() {
+    if (this.#api !== null) {
+      await this.#api.disconnect()
+    }
+  }
+
   async resolve(did, parsed, _resolver, _options) {
     // console.log("did:", did)
     // console.log("parsed:", parsed)
@@ -178,7 +184,7 @@ class SubstrateDidResolver {
         const algorithm = match[2]
         const purpose = match[4]
         const keyType = match[6]
-        if (!['Secp256k1', 'Ed25519', 'X25519'].find(v => algorithm === v) ||
+        if (!['Secp256k1', 'Ed25519', 'X25519', 'RSA'].find(v => algorithm === v) ||
           !['veriKey', 'sigAuth', 'enc'].find(v => purpose === v) ||
           !['hex', 'base58'].find(v => keyType === v) ||
           attr.value.isEmpty) {
@@ -217,6 +223,10 @@ class SubstrateDidResolver {
             veriItem.type = VeriMethodTypes.X25519KeyAgreementKey2019.name
             updateDDOContext(ddo, VeriMethodTypes.X25519KeyAgreementKey2019['@context'])
             break
+          case 'RSA':
+            veriItem.type = VeriMethodTypes.RSAVerificationKey.name
+            updateDDOContext(ddo, VeriMethodTypes.RSAVerificationKey['@context'])
+            break
           default:
             throw "Something went wrong"
         }
@@ -250,8 +260,8 @@ class SubstrateDidResolver {
 }
 
 const getResolver = async (option) => {
-  const intance = new SubstrateDidResolver(option)
-  return await intance.build()
+  const instance = new SubstrateDidResolver(option)
+  return await instance.build()
 }
 
 

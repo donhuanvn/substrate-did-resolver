@@ -1,6 +1,6 @@
 {
   "name": "@donhuanvn96/substrate-did-resolver",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "DID resolver for Substrate Addresses with support for key management",
   "main": "src/index.js",
   "scripts": {
